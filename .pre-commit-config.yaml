@@ -1,0 +1,27 @@
+# uv.lock is generated; pre-commit passes explicit filenames, which bypass
+# the excludes in typos.toml.
+exclude: ^uv\.lock$
+
+repos:
+  - repo: https://github.com/crate-ci/typos
+    rev: v1.51.1
+    hooks:
+      - id: typos
+
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.17.3
+    hooks:
+      - id: ruff-check
+        args: [--fix]
+      - id: ruff-format
+
+  # Runs outside pre-commit's isolated envs so ty can find the project's .venv
+  # and resolve imports; the version is pinned here instead of in uv.lock.
+  - repo: local
+    hooks:
+      - id: ty
+        name: ty check
+        entry: uvx ty@0.0.94 check
+        language: system
+        types: [python]
+        pass_filenames: false

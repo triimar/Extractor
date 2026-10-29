@@ -1,0 +1,37 @@
+target-version = "py314"
+line-length = 88
+
+# Added on top of ruff's defaults (.git, .venv, dist, node_modules, ...)
+extend-exclude = [
+    ".*",
+    "build",
+    "__pycache__",
+    "*.egg-info",
+    "htmlcov",
+]
+
+[lint]
+select = [
+    "E",    # pycodestyle errors
+    "W",    # pycodestyle warnings
+    "F",    # pyflakes
+    "I",    # isort
+    "B",    # bugbear
+    "UP",   # pyupgrade
+    "SIM",  # simplify
+    "C4",   # comprehensions
+    "RUF",  # ruff-specific
+]
+ignore = [
+    "E501",  # line length is the formatter's job
+    "B008",  # FastAPI uses calls like Depends() in argument defaults
+]
+
+[lint.per-file-ignores]
+"tests/**" = ["B011"]  # allow `assert False` in tests
+
+[format]
+quote-style = "double"
+indent-style = "space"
+line-ending = "lf"
+docstring-code-format = true

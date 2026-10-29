@@ -1,0 +1,7 @@
+[files]
+# Generated files and tool caches aren't worth spell-checking.
+extend-exclude = [
+    ".gitignore",
+    "uv.lock",
+    ".*_cache/",
+]

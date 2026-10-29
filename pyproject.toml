@@ -1,0 +1,38 @@
+[project]
+name = "extractor"
+version = "0.1.0"
+description = "Add your description here"
+authors = [
+    { name = "triimar", email = ""}
+]
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+    "dependency-injector>=4.49.1",
+    "fastapi>=0.162.0",
+    "loguru>=0.7.3",
+    "pydantic>=2.14.2",
+    "pydantic-ai-slim[google]>=2.63.0",
+    "pydantic-settings>=2.16.2",
+    "python-dotenv>=1.2.4",
+    "uvicorn>=0.54.0",
+]
+
+[tool.deptry.per_rule_ignores]
+# uvicorn is launched from the CLI and pydantic-ai-slim is installed for its
+# [google] extra, so neither is necessarily imported by name.
+DEP002 = ["uvicorn", "pydantic-ai-slim"]
+
+[build-system]
+requires = ["uv_build>=0.12.21,<0.13.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "deptry>=0.25.1",
+    "pytest>=9.2.0",
+    "pytest-cov>=7.1.0",
+]
+
+
+
